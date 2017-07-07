@@ -1,6 +1,13 @@
 # isdo
 A simple, basic, and robust set of utilities for javascript - inspired by, but not copied from, lodash.
 
+## Table of Contents
+
+1. [Installation](#installation)
+1. [Examples](#examples)
+1. [Usage](#usage)
+1. [Roadmap](#roadmap)
+
 ## Installation
 `$ npm i -S isdo`
 
@@ -24,9 +31,7 @@ arry.push(1);
 is.empty(arry); // => false
 ```
 
-# Usage
-
-## Table of Contents
+## Usage
 
 ### [is](#is-1)
 
