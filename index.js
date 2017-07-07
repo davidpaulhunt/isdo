@@ -1,12 +1,13 @@
-const is = {
-  typeId: type => `[object ${type}]`,
-  base: (target, type) => Object.prototype.toString.call(target) === is.typeId(type),
+const typeId = type => `[object ${type}]`;
 
-  null: obj => is.base(obj, 'Null'),
+const base = (target, type) => Object.prototype.toString.call(target) === typeId(type);
+
+const is = {
+  null: obj => base(obj, 'Null'),
 
   notNull: obj => !is.null(obj),
 
-  defined: obj => !is.base(obj, 'Undefined'),
+  defined: obj => !base(obj, 'Undefined'),
 
   undefined: obj => !is.defined(obj),
 
@@ -18,21 +19,21 @@ const is = {
 
   float: obj => is.number(obj) && !is.integer(obj),
 
-  function: obj => is.base(obj, 'Function'),
+  function: obj => base(obj, 'Function'),
 
   integer: obj => is.number(obj) && Number.isInteger(obj),
 
-  number: obj => is.base(obj, 'Number'),
+  number: obj => base(obj, 'Number'),
 
   iterable: obj => is.present(obj) && is.function(obj[Symbol.iterator]),
 
-  map: obj => is.base(obj, 'Map'),
+  map: obj => base(obj, 'Map'),
 
-  object: obj => is.base(obj, 'Object'),
+  object: obj => base(obj, 'Object'),
 
-  set: obj => is.base(obj, 'Set'),
+  set: obj => base(obj, 'Set'),
 
-  string: obj => is.base(obj, 'String'),
+  string: obj => base(obj, 'String'),
 
   blank: obj => !is.string(obj) || is.empty(obj),
 

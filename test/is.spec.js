@@ -5,8 +5,6 @@ const { expect } = require('chai');
 
 describe('{ is }', () => {
   [
-    'typeId',
-    'base',
     'null',
     'notNull',
     'defined',
@@ -30,31 +28,6 @@ describe('{ is }', () => {
   ].forEach((key) => {
     it(`should respond to the method ${key}`, () => {
       expect(is).to.respondTo(key, `is DOES NOT have the method ${key}`);
-    });
-  });
-
-  describe('typeId()', () => {
-    it('should return "[object Undefined]" when passed "Undefined"', () => {
-      expect(is.typeId('Undefined')).to.equal('[object Undefined]');
-    });
-    it('should return "[object Null]" when passed "Null', () => {
-      expect(is.typeId('Null')).to.equal('[object Null]');
-    });
-    it('should return "[object Object]" when passed Object', () => {
-      expect(is.typeId('Object')).to.equal('[object Object]');
-    });
-  });
-
-  describe('base()', () => {
-    it('should return true when target is undefined', () => {
-      let target;
-      expect(is.base(target, 'Undefined')).to.equal(true);
-    });
-    it('should return true when target is null', () => {
-      expect(is.base(null, 'Null')).to.equal(true);
-    });
-    it('should return false when target is {}', () => {
-      expect(is.base({}, 'Null')).to.equal(false);
     });
   });
 
