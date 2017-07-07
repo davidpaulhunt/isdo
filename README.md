@@ -4,7 +4,7 @@ A simple, basic, and robust set of utilities for javascript - inspired by, but n
 ## Installation
 `$ npm i -S isdo`
 
-## Usage
+## Examples
 ```js
 const { is } = require('isdo');
 
@@ -23,3 +23,41 @@ is.empty(arry); // => true
 arry.push(1);
 is.empty(arry); // => false
 ```
+
+# Usage
+
+## Table of Contents
+
+### [is](#is)
+1. [.array](#is-array)
+1. [.float](#is-float)
+1. [.function](#is-function)
+1. [.integer](#is-integer)
+1. [.iterable](#is-iterable)
+1. [.map](#is-map)
+1. [.number](#is-number)
+1. [.object](#is-object)
+1. [.set](#is-set)
+1. [.string](#is-string)
+
+## is
+### `is.array(target)`
+**Returns**
+`true` if target is an array, otherwise `false`.
+### is.float
+
+### is.function
+
+### is.integer
+
+### is.iterable
+
+### is.map
+
+### is.number
+
+### is.object
+
+### is.set
+
+### is.string
