@@ -30,6 +30,10 @@ is.empty(arry); // => false
 
 ### [is](#is)
 
+#### Extending is
+
+You can add your own useful comparisons and checks by using [is.extend](#isextendsource).
+
 *type comparisons*
 
 - [.array](#isarraytarget)
@@ -61,6 +65,9 @@ is.empty(arry); // => false
 *truthy/falsey checks*
 - [.true](#istruetarget)
 - [.false](#isfalsetarget)
+
+*extending with custom methods*
+- [.extend](#isextendsource)
 
 ---
 
@@ -184,3 +191,21 @@ is.empty(arry); // => false
 `true` if target is a string and is one of `["f", "false", "0"]`, or if target is a number and is <= 0, or if target is a boolean and is `false`, otherwise returns `false`.
 
 *Ignores capitalization.*
+
+
+### `is.extend(source)`
+
+Transfers functions and nested functions from source to `is`.
+
+**Example**
+```javascript
+const moment = require('moment');
+const isdo = require('is');
+
+const is = isdo.is.extend({
+  date: obj => moment.isDate(obj),
+});
+
+is.date('foo'); // => false
+is.date(new Date()); // => true
+```
