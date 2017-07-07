@@ -29,35 +29,77 @@ is.empty(arry); // => false
 ## Table of Contents
 
 ### [is](#is)
-1. [.array](#is-array)
-1. [.float](#is-float)
-1. [.function](#is-function)
-1. [.integer](#is-integer)
-1. [.iterable](#is-iterable)
-1. [.map](#is-map)
-1. [.number](#is-number)
-1. [.object](#is-object)
-1. [.set](#is-set)
-1. [.string](#is-string)
+*type comparisons*
+1. [.array](#isarraytarget)
+1. [.float](#isfloattarget)
+1. [.function](#isfunctiontarget)
+1. [.integer](#isintegertarget)
+1. [.iterable](#isiterabletarget)
+1. [.map](#ismaptarget)
+1. [.number](#isnumbertarget)
+1. [.object](#isobjecttarget)
+1. [.set](#issettarget)
+1. [.string](#isstringtarget)
+
+---
 
 ## is
+
 ### `is.array(target)`
 **Returns**
+
 `true` if target is an array, otherwise `false`.
-### is.float
 
-### is.function
 
-### is.integer
+### `is.float(target)`
+**Returns**
 
-### is.iterable
+`true` if target is a float, otherwise `false`.
 
-### is.map
 
-### is.number
+### `is.function(target)`
+**Returns**
 
-### is.object
+`true` if target is a function, otherwise `false`.
 
-### is.set
 
-### is.string
+### `is.integer(target)`
+**Returns**
+
+`true` if target is an integer, otherwise `false`.
+
+
+### `is.iterable(target)`
+**Returns**
+
+`true` if target conforms to the iterable protocol, otherwise `false`.
+
+
+### `is.map(target)`
+**Returns**
+
+`true` if target is a map, otherwise `false`.
+
+
+### `is.number(target)`
+**Returns**
+
+`true` if target is a number (integer or float), otherwise `false`.
+
+
+### `is.object(target)`
+**Returns**
+
+`true` if target is a plain object, otherwise `false`.
+
+
+### `is.set(target)`
+**Returns**
+
+`true` if target is a set, otherwise `false`.
+
+
+### `is.string(target)`
+**Returns**
+
+`true` if target is a string, otherwise `false`.
