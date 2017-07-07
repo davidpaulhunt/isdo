@@ -63,4 +63,32 @@ const is = {
   false: obj => !is.true(obj),
 };
 
+// function extend(original, source = {}) {
+//   const target = original;
+
+//   Object.keys(source).forEach((key) => {
+//     if (Object.prototype.hasOwnProperty.call(source, key)) {
+//       if (is.function(source[key])) {
+//         target[key] = source[key];
+//       } else if (is.object(source[key]) && is.object(target[key])) {
+//         target[key] = extend(target[key], source[key]);
+//       }
+//     }
+//   });
+
+//   return target;
+// }
+
+is.extend = function extend(source = {}) {
+  Object.keys(source).forEach((key) => {
+    if (Object.prototype.hasOwnProperty.call(source, key)) {
+      if (is.function(source[key])) {
+        this[key] = source[key];
+      } else if (is.object(source[key]) && is.object(this[key])) {
+        this[key] = extend(this[key], source[key]);
+      }
+    }
+  });
+};
+
 module.exports = { is };

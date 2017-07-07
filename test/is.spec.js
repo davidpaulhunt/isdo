@@ -28,6 +28,8 @@ describe('{ is }', () => {
     'empty',
     'true',
     'false',
+
+    'extend',
   ].forEach((key) => {
     it(`should respond to the method ${key}`, () => {
       expect(is).to.respondTo(key, `is DOES NOT have the method ${key}`);
@@ -355,6 +357,21 @@ describe('{ is }', () => {
     it('should handle numbers', () => {
       expect(is.false(1)).to.equal(false);
       expect(is.false(0)).to.equal(true);
+    });
+  });
+
+  describe('extend()', () => {
+    it('should not have the foo() method', () => {
+      expect(is).not.to.respondTo('foo');
+    });
+
+    it('should have the foo() method', () => {
+      is.extend({
+        foo: obj => obj === 'foo',
+      });
+      expect(is).to.respondTo('foo');
+      expect(is.foo('foo')).to.equal(true);
+      expect(is.foo('bar')).to.equal(false);
     });
   });
 });
