@@ -310,3 +310,9 @@ is.date(new Date()); // => true
 **Returns**
 
 `true` if at least one of targets are falsey, otherwise `false`.
+
+
+## Roadmap
+- [x] `is` module for common comparisons and checks i/e undefined, null, object, etc
+- [ ] `do` module for common functions i/e merge, get, etc
+- [ ] Get feedback and iterate
