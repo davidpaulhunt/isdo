@@ -28,7 +28,7 @@ is.empty(arry); // => false
 
 ## Table of Contents
 
-### [is](#is)
+### [is](#is-1)
 
 #### Extending is
 
@@ -68,29 +68,29 @@ You can add your own useful comparisons and checks by using [is.extend](#isexten
 *extending with custom methods*
 - [.extend](#isextendsource)
 
-### [is.all](#isall)
+### [is.all](#isall-1)
 
 *presence checks*
-- [.defined](#isdefinedtargets)
-- [.missing](#ismissingtargets)
-- [.present](#ismissingtargets)
-- [.undefined](#isundefinedtargets)
+- [.defined](#isalldefinedtargets)
+- [.missing](#isallmissingtargets)
+- [.present](#isallmissingtargets)
+- [.undefined](#isallundefinedtargets)
 
 *truthy/falsey checks*
-- [.true](#istruetargets)
-- [.false](#isfalsetargets)
+- [.true](#isalltruetargets)
+- [.false](#isallfalsetargets)
 
-### [is.any](#isany)
+### [is.any](#isany-1)
 
 *presence checks*
-- [.defined](#isdefinedtargets)
-- [.missing](#ismissingtargets)
-- [.present](#ismissingtargets)
-- [.undefined](#isundefinedtargets)
+- [.defined](#isanydefinedtargets)
+- [.missing](#isanymissingtargets)
+- [.present](#isanymissingtargets)
+- [.undefined](#isanyundefinedtargets)
 
 *truthy/falsey checks*
-- [.true](#istruetargets)
-- [.false](#isfalsetargets)
+- [.true](#isanytruetargets)
+- [.false](#isanyfalsetargets)
 
 ---
 
