@@ -29,17 +29,38 @@ is.empty(arry); // => false
 ## Table of Contents
 
 ### [is](#is)
+
 *type comparisons*
-1. [.array](#isarraytarget)
-1. [.float](#isfloattarget)
-1. [.function](#isfunctiontarget)
-1. [.integer](#isintegertarget)
-1. [.iterable](#isiterabletarget)
-1. [.map](#ismaptarget)
-1. [.number](#isnumbertarget)
-1. [.object](#isobjecttarget)
-1. [.set](#issettarget)
-1. [.string](#isstringtarget)
+
+- [.array](#isarraytarget)
+- [.boolean](#isbooleantarget)
+- [.float](#isfloattarget)
+- [.function](#isfunctiontarget)
+- [.integer](#isintegertarget)
+- [.iterable](#isiterabletarget)
+- [.map](#ismaptarget)
+- [.null](#isnulltarget)
+- [.number](#isnumbertarget)
+- [.object](#isobjecttarget)
+- [.set](#issettarget)
+- [.string](#isstringtarget)
+- [.undefined](#isundefinedtarget)
+
+*presence checks*
+
+- [.defined](#isdefinedtarget)
+- [.missing](#ismissingtarget)
+- [.notNull](#isnotnulltarget)
+- [.present](#ismissingtarget)
+- [.undefined](#isundefinedtarget)
+
+*quality checks*
+- [.blank](#isblanktarget)
+- [.empty](#isemptytarget)
+
+*truthy/falsey checks*
+- [.true](#istruetarget)
+- [.false](#isfalsetarget)
 
 ---
 
@@ -49,6 +70,12 @@ is.empty(arry); // => false
 **Returns**
 
 `true` if target is an array, otherwise `false`.
+
+
+### `is.boolean(target)`
+**Returns**
+
+`true` if target is a boolean, otherwise `false`.
 
 
 ### `is.float(target)`
@@ -103,3 +130,57 @@ is.empty(arry); // => false
 **Returns**
 
 `true` if target is a string, otherwise `false`.
+
+
+### `is.defined(target)`
+**Returns**
+
+`true` if target is NOT undefined, otherwise `false`.
+
+
+### `is.missing(target)`
+**Returns**
+
+`true` if target is either undefined or null, otherwise `false`.
+
+
+### `is.notNull(target)`
+**Returns**
+
+`true` if target is anything other than null, even undefined, otherwise `false`.
+
+
+### `is.present(target)`
+**Returns**
+
+`true` if target is both defined and not null, otherwise `false`.
+
+
+### `is.blank(target)`
+**Returns**
+
+`true` if target *string* is missing or has length < 1, otherwise `false`.
+
+
+### `is.empty(target)`
+**Returns**
+
+`true` if target's length < 1, otherwise `false`.
+
+*If target is an array or string, length = target.length, if target is a map or set, length = target.size, if target is an object, length = number of keys in target, otherwise length = 0.*
+
+
+### `is.true(target)`
+**Returns**
+
+`true` if target is a string and is one of `["t", "true", "1"]`, or if target is a number and is > 0, or if target is a boolean and is `true`, otherwise returns `false`.
+
+*Ignores capitalization.*
+
+
+### `is.false(target)`
+**Returns**
+
+`true` if target is a string and is one of `["f", "false", "0"]`, or if target is a number and is <= 0, or if target is a boolean and is `false`, otherwise returns `false`.
+
+*Ignores capitalization.*

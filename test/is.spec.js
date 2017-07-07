@@ -13,6 +13,7 @@ describe('{ is }', () => {
     'present',
 
     'array',
+    'boolean',
     'float',
     'function',
     'integer',
@@ -25,6 +26,8 @@ describe('{ is }', () => {
 
     'blank',
     'empty',
+    'true',
+    'false',
   ].forEach((key) => {
     it(`should respond to the method ${key}`, () => {
       expect(is).to.respondTo(key, `is DOES NOT have the method ${key}`);
@@ -119,6 +122,19 @@ describe('{ is }', () => {
     });
     it('should return true when target is [1,2,3]', () => {
       expect(is.array([1, 2, 3])).to.equal(true);
+    });
+  });
+
+  describe('boolean()', () => {
+    it('should return false when target is undefined', () => {
+      let target;
+      expect(is.boolean(target)).to.equal(false);
+    });
+    it('should return false when target is "hello"', () => {
+      expect(is.boolean('hello')).to.equal(false);
+    });
+    it('should return true when target is false', () => {
+      expect(is.boolean(false)).to.equal(true);
     });
   });
 
@@ -301,6 +317,44 @@ describe('{ is }', () => {
     });
     it('should return false when target is [1,2,3]', () => {
       expect(is.empty([1, 2, 3])).to.equal(false);
+    });
+  });
+
+  describe('true()', () => {
+    it('should handle strings', () => {
+      expect(is.true('t')).to.equal(true);
+      expect(is.true('true')).to.equal(true);
+      expect(is.true('1')).to.equal(true);
+      expect(is.true('f')).to.equal(false);
+      expect(is.true('false')).to.equal(false);
+      expect(is.true('0')).to.equal(false);
+    });
+    it('should handle booleans', () => {
+      expect(is.true(true)).to.equal(true);
+      expect(is.true(false)).to.equal(false);
+    });
+    it('should handle numbers', () => {
+      expect(is.true(1)).to.equal(true);
+      expect(is.true(0)).to.equal(false);
+    });
+  });
+
+  describe('false()', () => {
+    it('should handle strings', () => {
+      expect(is.false('f')).to.equal(true);
+      expect(is.false('false')).to.equal(true);
+      expect(is.false('0')).to.equal(true);
+      expect(is.false('t')).to.equal(false);
+      expect(is.false('true')).to.equal(false);
+      expect(is.false('1')).to.equal(false);
+    });
+    it('should handle booleans', () => {
+      expect(is.false(true)).to.equal(false);
+      expect(is.false(false)).to.equal(true);
+    });
+    it('should handle numbers', () => {
+      expect(is.false(1)).to.equal(false);
+      expect(is.false(0)).to.equal(true);
     });
   });
 });

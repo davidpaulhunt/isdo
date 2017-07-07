@@ -17,6 +17,8 @@ const is = {
 
   array: obj => Array.isArray(obj),
 
+  boolean: obj => base(obj, 'Boolean'),
+
   float: obj => is.number(obj) && !is.integer(obj),
 
   function: obj => base(obj, 'Function'),
@@ -48,6 +50,17 @@ const is = {
 
     return getLength() < 1;
   },
+
+  true: (obj) => {
+    if (is.boolean(obj)) return obj === true;
+    if (is.string(obj)) {
+      return ['t', 'true', '1'].includes(obj.toLowerCase());
+    }
+    if (is.number(obj)) return obj > 0;
+    return false;
+  },
+
+  false: obj => !is.true(obj),
 };
 
 module.exports = { is };
