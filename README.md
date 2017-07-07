@@ -51,7 +51,6 @@ You can add your own useful comparisons and checks by using [is.extend](#isexten
 - [.undefined](#isundefinedtarget)
 
 *presence checks*
-
 - [.defined](#isdefinedtarget)
 - [.missing](#ismissingtarget)
 - [.notNull](#isnotnulltarget)
@@ -68,6 +67,30 @@ You can add your own useful comparisons and checks by using [is.extend](#isexten
 
 *extending with custom methods*
 - [.extend](#isextendsource)
+
+### [is.all](#isall)
+
+*presence checks*
+- [.defined](#isdefinedtargets)
+- [.missing](#ismissingtargets)
+- [.present](#ismissingtargets)
+- [.undefined](#isundefinedtargets)
+
+*truthy/falsey checks*
+- [.true](#istruetargets)
+- [.false](#isfalsetargets)
+
+### [is.any](#isany)
+
+*presence checks*
+- [.defined](#isdefinedtargets)
+- [.missing](#ismissingtargets)
+- [.present](#ismissingtargets)
+- [.undefined](#isundefinedtargets)
+
+*truthy/falsey checks*
+- [.true](#istruetargets)
+- [.false](#isfalsetargets)
 
 ---
 
@@ -209,3 +232,81 @@ const is = isdo.is.extend({
 is.date('foo'); // => false
 is.date(new Date()); // => true
 ```
+
+
+## is.all
+
+
+### `is.all.defined(targets)`
+**Returns**
+
+`true` if all targets are defined, otherwise `false`.
+
+
+### `is.all.undefined(targets)`
+**Returns**
+
+`true` if all targets are undefined, otherwise `false`.
+
+
+### `is.all.present(targets)`
+**Returns**
+
+`true` if all targets are neither null nor undefined, otherwise `false`.
+
+
+### `is.all.missing(targets)`
+**Returns**
+
+`true` if all targets are null or undefined, otherwise `false`.
+
+
+### `is.all.true(targets)`
+**Returns**
+
+`true` if all targets are truthy, otherwise `false`.
+
+
+### `is.all.false(targets)`
+**Returns**
+
+`true` if all targets are falsey, otherwise `false`.
+
+
+## is.any
+
+
+### `is.any.defined(targets)`
+**Returns**
+
+`true` if at least one of targets are defined, otherwise `false`.
+
+
+### `is.any.undefined(targets)`
+**Returns**
+
+`true` if at least one of targets are undefined, otherwise `false`.
+
+
+### `is.any.present(targets)`
+**Returns**
+
+`true` if at least one of targets are neither null nor undefined, otherwise `false`.
+
+
+### `is.any.missing(targets)`
+**Returns**
+
+`true` if at least one of targets are null or undefined, otherwise `false`.
+
+
+### `is.any.true(targets)`
+**Returns**
+
+`true` if at least one of targets are truthy, otherwise `false`.
+
+
+### `is.any.false(targets)`
+**Returns**
+
+`true` if at least one of targets are falsey, otherwise `false`.

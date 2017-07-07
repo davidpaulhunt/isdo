@@ -61,23 +61,37 @@ const is = {
   },
 
   false: obj => !is.true(obj),
+
+  ownProperty: (obj, prop) => is.object(obj) && Object.prototype.hasOwnProperty.call(obj, prop),
 };
 
-// function extend(original, source = {}) {
-//   const target = original;
+is.all = {
+  defined: (...args) => !args.some(is.undefined),
 
-//   Object.keys(source).forEach((key) => {
-//     if (Object.prototype.hasOwnProperty.call(source, key)) {
-//       if (is.function(source[key])) {
-//         target[key] = source[key];
-//       } else if (is.object(source[key]) && is.object(target[key])) {
-//         target[key] = extend(target[key], source[key]);
-//       }
-//     }
-//   });
+  undefined: (...args) => !args.some(is.defined),
 
-//   return target;
-// }
+  missing: (...args) => !args.some(is.present),
+
+  present: (...args) => !args.some(is.missing),
+
+  true: (...args) => !args.some(is.false),
+
+  false: (...args) => !args.some(is.true),
+};
+
+is.any = {
+  defined: (...args) => args.some(is.defined),
+
+  undefined: (...args) => args.some(is.undefined),
+
+  missing: (...args) => args.some(is.missing),
+
+  present: (...args) => args.some(is.present),
+
+  true: (...args) => args.some(is.true),
+
+  false: (...args) => args.some(is.false),
+};
 
 is.extend = function extend(source = {}) {
   Object.keys(source).forEach((key) => {

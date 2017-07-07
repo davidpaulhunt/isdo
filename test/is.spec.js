@@ -30,6 +30,8 @@ describe('{ is }', () => {
     'false',
 
     'extend',
+
+    'ownProperty',
   ].forEach((key) => {
     it(`should respond to the method ${key}`, () => {
       expect(is).to.respondTo(key, `is DOES NOT have the method ${key}`);
@@ -372,6 +374,235 @@ describe('{ is }', () => {
       expect(is).to.respondTo('foo');
       expect(is.foo('foo')).to.equal(true);
       expect(is.foo('bar')).to.equal(false);
+    });
+  });
+
+  describe('ownProperty()', () => {
+    it('should return false when passed {}, "foo"', () => {
+      expect(is.ownProperty({}, 'foo')).to.equal(false);
+    });
+    it('should return false when passed {a: "b"}, "foo"', () => {
+      expect(is.ownProperty({ a: 'b' }, 'foo')).to.equal(false);
+    });
+    it('should return true when passed {a: "b"}, "a"', () => {
+      expect(is.ownProperty({ a: 'b' }, 'a')).to.equal(true);
+    });
+  });
+
+  describe('all', () => {
+    it('should exist', () => {
+      expect(is).to.have.ownProperty('all');
+    });
+
+    [
+      'defined',
+      'undefined',
+      'present',
+      'missing',
+      'true',
+      'false',
+    ].forEach((key) => {
+      it(`should respond to the method ${key}`, () => {
+        expect(is.all).to.respondTo(key, `is DOES NOT have the method ${key}`);
+      });
+    });
+
+    describe('defined()', () => {
+      it('should return true when passed 1 and "hello"', () => {
+        expect(is.all.defined(1, 'hello')).to.equal(true);
+      });
+      it('should return false when passed 1 and undefined', () => {
+        let target;
+        expect(is.all.defined(1, target)).to.equal(false);
+      });
+    });
+
+    describe('undefined()', () => {
+      it('should return false when passed 1 and undefined', () => {
+        let target;
+        expect(is.all.undefined(1, target)).to.equal(false);
+      });
+      it('should return true when passed undefined and undefined', () => {
+        let target;
+        let foo;
+        expect(is.all.undefined(foo, target)).to.equal(true);
+      });
+    });
+
+    describe('true()', () => {
+      it('should handle strings', () => {
+        expect(is.all.true('t', 'true')).to.equal(true);
+        expect(is.all.true('true', 'f')).to.equal(false);
+        expect(is.all.true('1')).to.equal(true);
+        expect(is.all.true('f', '0', 'false')).to.equal(false);
+        expect(is.all.true('false', 'F')).to.equal(false);
+        expect(is.all.true('0')).to.equal(false);
+      });
+      it('should handle booleans', () => {
+        expect(is.all.true(true, true)).to.equal(true);
+        expect(is.all.true(false, true, true)).to.equal(false);
+      });
+      it('should handle numbers', () => {
+        expect(is.all.true(1, 1, 1)).to.equal(true);
+        expect(is.all.true(1, 1, 0)).to.equal(false);
+      });
+    });
+
+    describe('false()', () => {
+      it('should handle strings', () => {
+        expect(is.all.false('f', 'false', '0')).to.equal(true);
+        expect(is.all.false('false', 't')).to.equal(false);
+        expect(is.all.false('0', 'FALSE')).to.equal(true);
+        expect(is.all.false('t', 'false')).to.equal(false);
+        expect(is.all.false('true', 'f')).to.equal(false);
+        expect(is.all.false('1', '0')).to.equal(false);
+      });
+      it('should handle booleans', () => {
+        expect(is.all.false(false, false, true)).to.equal(false);
+        expect(is.all.false(false, false)).to.equal(true);
+      });
+      it('should handle numbers', () => {
+        expect(is.all.false(0, 0, 1)).to.equal(false);
+        expect(is.all.false(0, 0, 0)).to.equal(true);
+      });
+    });
+
+    describe('missing()', () => {
+      it('should return true when target is undefined', () => {
+        let target;
+        expect(is.all.missing(target, null)).to.equal(true);
+      });
+      it('should return true when target is null', () => {
+        expect(is.all.missing(null, null)).to.equal(true);
+      });
+      it('should return false when target is 1', () => {
+        expect(is.all.missing(null, 1)).to.equal(false);
+      });
+    });
+
+    describe('present()', () => {
+      it('should return false when target is undefined', () => {
+        let target;
+        expect(is.all.present('foo', target)).to.equal(false);
+      });
+      it('should return false when target is null', () => {
+        expect(is.all.present('foo', null)).to.equal(false);
+      });
+      it('should return true when target is 1', () => {
+        expect(is.all.present('foo', 1)).to.equal(true);
+      });
+    });
+  });
+
+  describe('any', () => {
+    it('should exist', () => {
+      expect(is).to.have.ownProperty('any');
+    });
+
+    [
+      'defined',
+      'undefined',
+      'present',
+      'missing',
+      'true',
+      'false',
+    ].forEach((key) => {
+      it(`should respond to the method ${key}`, () => {
+        expect(is.any).to.respondTo(key, `is DOES NOT have the method ${key}`);
+      });
+    });
+
+    describe('defined()', () => {
+      it('should return true when passed 1 and "hello"', () => {
+        expect(is.any.defined(1, 'hello')).to.equal(true);
+      });
+      it('should return true when passed 1 and undefined', () => {
+        let target;
+        expect(is.any.defined(1, target)).to.equal(true);
+      });
+      it('should return false when passed undefined and undefined', () => {
+        let target;
+        let foo;
+        expect(is.any.defined(foo, target)).to.equal(false);
+      });
+    });
+
+    describe('undefined()', () => {
+      it('should return true when passed 1 and undefined', () => {
+        let target;
+        expect(is.any.undefined(1, target)).to.equal(true);
+      });
+      it('should return true when passed undefined and undefined', () => {
+        let target;
+        let foo;
+        expect(is.any.undefined(foo, target)).to.equal(true);
+      });
+      it('should return false when passed 1 and "hello"', () => {
+        expect(is.any.undefined(1, 'hello')).to.equal(false);
+      });
+    });
+
+    describe('true()', () => {
+      it('should handle strings', () => {
+        expect(is.any.true('t', 'true')).to.equal(true);
+        expect(is.any.true('false', 'f')).to.equal(false);
+        expect(is.any.true('1')).to.equal(true);
+        expect(is.any.true('f', '0', 'false')).to.equal(false);
+        expect(is.any.true('false', 'F')).to.equal(false);
+        expect(is.any.true('0')).to.equal(false);
+      });
+      it('should handle booleans', () => {
+        expect(is.any.true(false, true)).to.equal(true);
+        expect(is.any.true(false, false, false)).to.equal(false);
+      });
+      it('should handle numbers', () => {
+        expect(is.any.true(0, 0, 1)).to.equal(true);
+        expect(is.any.true(0, 0, 0)).to.equal(false);
+      });
+    });
+
+    describe('false()', () => {
+      it('should handle strings', () => {
+        expect(is.any.false('f', 'false', '0')).to.equal(true);
+        expect(is.any.false('TRUE', 't')).to.equal(false);
+        expect(is.any.false('0', 'FALSE')).to.equal(true);
+        expect(is.any.false('t', 'false')).to.equal(true);
+        expect(is.any.false('true', 'f')).to.equal(true);
+        expect(is.any.false('1', 't')).to.equal(false);
+      });
+      it('should handle booleans', () => {
+        expect(is.any.false(true, true, true)).to.equal(false);
+        expect(is.any.false(true, false)).to.equal(true);
+      });
+      it('should handle numbers', () => {
+        expect(is.any.false(1, 1, 1)).to.equal(false);
+        expect(is.any.false(1, 1, 0)).to.equal(true);
+      });
+    });
+
+    describe('missing()', () => {
+      it('should return false when target is "hello"', () => {
+        expect(is.any.missing('hello', 100)).to.equal(false);
+      });
+      it('should return true when target is null', () => {
+        expect(is.any.missing(null, null)).to.equal(true);
+      });
+      it('should return true when target is 1', () => {
+        expect(is.any.missing(null, 1)).to.equal(true);
+      });
+    });
+
+    describe('present()', () => {
+      it('should return true when target is undefined', () => {
+        let target;
+        expect(is.any.present('foo', target)).to.equal(true);
+      });
+      it('should return false when target is null', () => {
+        expect(is.any.present(null, null)).to.equal(false);
+      });
+      it('should return true when target is 1', () => {
+        expect(is.any.present('foo', 1)).to.equal(true);
+      });
     });
   });
 });
